@@ -443,7 +443,7 @@ body {
 }
 
 .login-card #icon {
-  width: 60px;
+  width: 40px;
   border-radius: var(--border-radius);
   margin-right: 30px;
 }
