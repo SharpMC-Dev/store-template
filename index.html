@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./assets/styles/index.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal">
+        <div class="modal-content">
+          <span id="modal-title"></span>
+          <span id="modal-subtitle"></span>
+          <div class="modal-dismiss-row"><button id="modal-dismiss-button">Ok</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="site">
+      <div class="sidebar">
+        <div class="navbar">
+          <div class="nav-item">
+            <div class="menu-icon" id="menu-icon">
+              <div id="menu-icon-perm" class="center">
+                <div></div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="server-info">
+              <span id="players"><span id="players-online">24</span> players online</span>
+              <div id="ip-pill">
+                <span id="ip" onclick="showModal('IP Copied', 'The IP was successfully copied. You can now paste it anywhere.'); copy('play.sharpmc.org')">play.sharpmc.org</span>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="server-logo">
+              <img src="./assets/images/logos/logo.png" alt="sharpmc logo" id="logo" />
+            </div>
+          </div>
+        </div>
+        <!-- SHOW FEATURED PACKAGE -->
+        <div class="package-overlay">
+          <div class="featured-package">
+            <span id="title">Featured<br />Package</span>
+            <div class="package">
+              <span id="path"><span id="path-back">ranks /</span> <span id="path-current">king</span></span>
+              <img src="./assets/images/logos/logo.png" id="package-logo" />
+              <div class="package-info-bar">
+                <span id="package-price">$50.00 USD</span>
+                <button id="view-button">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SHOW FEATURED PACKAGE -->
+
+        <!-- SHOW NAVIGATION -->
+        <div class="navigation-container">
+          <div class="navigation">
+            <ul>
+              <span id="navigation-title">Categories</span>
+              <li><a href="/" class="active">Home</a></li>
+              <li><a href="/ranks">Ranks</a></li>
+              <li><a href="/keys">Crate Keys</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- SHOW NAVIGATION -->
+
+        <div class="footer"><a href="/privacy">Privacy Policy</a> &nbsp; <span id="dot">&bull;</span> &nbsp; <a href="/terms">Terms</a></div>
+      </div>
+      <div class="container">
+        <div class="column c1">
+          <div class="sale-card card">
+            <div class="sale-accent"><span id="sale-text">Sale</span></div>
+            <div class="sale-content">Take 50% off of EVERYTHING on our store during our new years sale! Ends 2/1/23</div>
+          </div>
+          <div class="spacer"></div>
+          <div class="welcome">
+            <span id="welcome-title">Welcome</span>
+            <span id="welcome-subtitle"
+              >Welcome to SharpMC! On our store you can find ranks, crate keys, and other things that can help you as you play on the server. If you are in need of support, or have any questions at all, feel free to join our
+              <a href="/discord">Discord</a></span
+            >
+          </div>
+        </div>
+        <div class="column c2">
+          <div class="login-card card">
+            <div class="card-content">
+              <div class="icon">
+                <img src="https://minotar.net/helm/mhf_steve/600.png" id="icon" />
+              </div>
+              <div class="account-prompt">
+                <span id="login-text">Log In</span>
+              </div>
+              <div class="account-currency">
+                <span id="currency">USD <span class="material-icons"> expand_more </span></span>
+              </div>
+            </div>
+          </div>
+          <div class="cart-card card">
+            <div class="cart-icon"><span class="material-icons"> shopping_cart </span></div>
+            <div class="cart-text">Your cart is empty, login to continue</div>
+          </div>
+          <div class="donation-goal-card card">
+            <span class="card-title">Donation Goal</span>
+            <div class="goal-progress">
+              <div class="progress-item1 progress-item complete"></div>
+              <div class="progress-item2 progress-item complete"></div>
+              <div class="progress-item3 progress-item complete"></div>
+              <div class="progress-item4 progress-item complete"></div>
+              <div class="progress-item5 progress-item complete"></div>
+              <div class="progress-item6 progress-item complete"></div>
+              <div class="progress-item7 progress-item complete"></div>
+              <div class="progress-item8 progress-item complete"></div>
+              <div class="progress-item9 progress-item complete"></div>
+              <div class="progress-item10 progress-item complete"></div>
+              <div class="progress-item11 progress-item"></div>
+              <div class="progress-item12 progress-item"></div>
+              <div class="progress-item13 progress-item"></div>
+              <div class="progress-item14 progress-item"></div>
+              <div class="progress-item15 progress-item"></div>
+              <div class="progress-item16 progress-item"></div>
+              <div class="progress-item17 progress-item"></div>
+              <div class="progress-item18 progress-item"></div>
+              <div class="progress-item19 progress-item"></div>
+              <div class="progress-item20 progress-item"></div>
+            </div>
+            <span class="card-footer">50% &bull; $350 / $700</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="./scripts/menu-animation.js"></script>
+    <script src="./scripts/modals.js"></script>
+    <script src="./scripts/copyIp.js"></script>
+  </body>
+</html>
