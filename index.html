@@ -7,8 +7,11 @@
 
     <link rel="stylesheet" href="./assets/styles/index.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="shortcut icon" href="./assets/images/logos/logo.png" type="image/x-icon" />
 
-    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>SharpMC | Store</title>
   </head>
   <body>
     <div class="modal-overlay"></div>
@@ -33,10 +36,8 @@
           </div>
           <div class="nav-item">
             <div class="server-info">
-              <span id="players"><span id="players-online">24</span> players online</span>
-              <div id="ip-pill">
-                <span id="ip" onclick="showModal('IP Copied', 'The IP was successfully copied. You can now paste it anywhere.'); copy('play.sharpmc.org')">play.sharpmc.org</span>
-              </div>
+              <span id="players"></span>
+              <div id="ip-pill"></div>
             </div>
           </div>
           <div class="nav-item">
@@ -47,17 +48,19 @@
         </div>
         <!-- SHOW FEATURED PACKAGE -->
         <div class="package-overlay">
+          <!-- FEATURED PACKAGE --JS -->
           <div class="featured-package">
             <span id="title">Featured<br />Package</span>
             <div class="package">
-              <span id="path"><span id="path-back">ranks /</span> <span id="path-current">king</span></span>
+              <span id="path"><span id="path-back"></span> <span id="path-current"></span></span>
               <img src="./assets/images/logos/logo.png" id="package-logo" />
               <div class="package-info-bar">
-                <span id="package-price">$50.00 USD</span>
+                <span id="package-price"></span>
                 <button id="view-button">View</button>
               </div>
             </div>
           </div>
+          <!-- FEATURED PACKAGE --JS -->
         </div>
         <!-- SHOW FEATURED PACKAGE -->
 
@@ -76,20 +79,23 @@
 
         <div class="footer"><a href="/privacy">Privacy Policy</a> &nbsp; <span id="dot">&bull;</span> &nbsp; <a href="/terms">Terms</a></div>
       </div>
+      <!-- LAYOUT -->
       <div class="container">
         <div class="column c1">
           <div class="sale-card card">
             <div class="sale-accent"><span id="sale-text">Sale</span></div>
-            <div class="sale-content">Take 50% off of EVERYTHING on our store during our new years sale! Ends 2/1/23</div>
+            <div class="sale-content">Take 50% off of EVERYTHING on our store during our new years sale!<br /><strong>Ends 2/1/23</strong></div>
           </div>
           <div class="spacer"></div>
-          <div class="welcome">
+          <!-- LAYOUT -->
+          <div class="content">
             <span id="welcome-title">Welcome</span>
             <span id="welcome-subtitle"
               >Welcome to SharpMC! On our store you can find ranks, crate keys, and other things that can help you as you play on the server. If you are in need of support, or have any questions at all, feel free to join our
               <a href="/discord">Discord</a></span
             >
           </div>
+          <!-- LAYOUT -->
         </div>
         <div class="column c2">
           <div class="login-card card">
@@ -100,9 +106,9 @@
               <div class="account-prompt">
                 <span id="login-text">Log In</span>
               </div>
-              <div class="account-currency">
+              <!-- <div class="account-currency">
                 <span id="currency">USD <span class="material-icons"> expand_more </span></span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="cart-card card">
@@ -144,5 +150,7 @@
     <script src="./scripts/menu-animation.js"></script>
     <script src="./scripts/modals.js"></script>
     <script src="./scripts/copyIp.js"></script>
+    <script src="./scripts/serverInfo.js"></script>
+    <script src="./scripts/featuredPackage.js"></script>
   </body>
 </html>

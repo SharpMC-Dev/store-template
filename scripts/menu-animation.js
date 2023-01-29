@@ -28,14 +28,3 @@ $('#menu-icon').on('click', () => {
     return;
   }
 });
-
-$('#menu-icon').on('hover', e => {
-  if ($('#menu-icon-perm').attr('class').includes('centernot')) {
-    e.preventDefault();
-  }
-});
-
-$('#menu-icon').on('click', () => {
-  $('#menu-icon-perm').toggleClass('centernot');
-  $('#menu-icon-perm').toggleClass('center');
-});
