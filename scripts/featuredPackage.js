@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:9901/store/packages/featured';
+const FPEndpoint = 'http://localhost:9901/store/packages/featured';
 
 const pathBack = $('.featured-package #path #path-back');
 const pathCurrent = $('.featured-package #path #path-current');
@@ -15,10 +15,9 @@ function formatPrice(num) {
   return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 }
 
-fetch(endpoint, requestOptions).then(res =>
+fetch(FPEndpoint, requestOptions).then(res =>
   res.text().then(response => {
     response = JSON.parse(response);
-    console.log(response);
 
     // if (!response.successful) {
     //   $('.featured-package').html(`<span id="title">${response}</span>`);

@@ -67,11 +67,9 @@
         <!-- SHOW NAVIGATION -->
         <div class="navigation-container">
           <div class="navigation">
-            <ul>
+            <ul id="navigation-list">
               <span id="navigation-title">Categories</span>
               <li><a href="/" class="active">Home</a></li>
-              <li><a href="/ranks">Ranks</a></li>
-              <li><a href="/keys">Crate Keys</a></li>
             </ul>
           </div>
         </div>
@@ -89,11 +87,24 @@
           <div class="spacer"></div>
           <!-- LAYOUT -->
           <div class="content">
-            <span id="welcome-title">Welcome</span>
-            <span id="welcome-subtitle"
+            <span id="content-title" class="welcome-element">Welcome</span>
+            <span id="content-subtitle" class="welcome-element"
               >Welcome to SharpMC! On our store you can find ranks, crate keys, and other things that can help you as you play on the server. If you are in need of support, or have any questions at all, feel free to join our
               <a href="/discord">Discord</a></span
             >
+            <div class="content-container">
+              <span id="content-title" class="login-element">Log In</span>
+              <div class="spacer login-element"></div>
+
+              <div class="username-card login-element">
+                <span class="username-card-title">Enter your Username (Case Sentitive)</span>
+                <div class="username-form">
+                  <input type="text" name="username" id="username-input" placeholder="ENTER YOUR USERNAME" />
+                  <label for="username">Invalid Username</label>
+                  <button id="username-submit">Log In</button>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- LAYOUT -->
         </div>
@@ -101,10 +112,11 @@
           <div class="login-card card">
             <div class="card-content">
               <div class="icon">
-                <img src="https://minotar.net/helm/mhf_steve/600.png" id="icon" />
+                <img src="https://minotar.net/helm/mfh_steve/600.png" id="icon" />
               </div>
               <div class="account-prompt">
                 <span id="login-text">Log In</span>
+                <span id="logout-text">Log Out</span>
               </div>
               <!-- <div class="account-currency">
                 <span id="currency">USD <span class="material-icons"> expand_more </span></span>
@@ -115,32 +127,7 @@
             <div class="cart-icon"><span class="material-icons"> shopping_cart </span></div>
             <div class="cart-text">Your cart is empty, login to continue</div>
           </div>
-          <div class="donation-goal-card card">
-            <span class="card-title">Donation Goal</span>
-            <div class="goal-progress">
-              <div class="progress-item1 progress-item complete"></div>
-              <div class="progress-item2 progress-item complete"></div>
-              <div class="progress-item3 progress-item complete"></div>
-              <div class="progress-item4 progress-item complete"></div>
-              <div class="progress-item5 progress-item complete"></div>
-              <div class="progress-item6 progress-item complete"></div>
-              <div class="progress-item7 progress-item complete"></div>
-              <div class="progress-item8 progress-item complete"></div>
-              <div class="progress-item9 progress-item complete"></div>
-              <div class="progress-item10 progress-item complete"></div>
-              <div class="progress-item11 progress-item"></div>
-              <div class="progress-item12 progress-item"></div>
-              <div class="progress-item13 progress-item"></div>
-              <div class="progress-item14 progress-item"></div>
-              <div class="progress-item15 progress-item"></div>
-              <div class="progress-item16 progress-item"></div>
-              <div class="progress-item17 progress-item"></div>
-              <div class="progress-item18 progress-item"></div>
-              <div class="progress-item19 progress-item"></div>
-              <div class="progress-item20 progress-item"></div>
-            </div>
-            <span class="card-footer">50% &bull; $350 / $700</span>
-          </div>
+          <div class="community-goals"></div>
         </div>
       </div>
     </div>
@@ -151,6 +138,9 @@
     <script src="./scripts/modals.js"></script>
     <script src="./scripts/copyIp.js"></script>
     <script src="./scripts/serverInfo.js"></script>
+    <script src="./scripts/categories.js"></script>
     <script src="./scripts/featuredPackage.js"></script>
+    <script src="./scripts/communityGoals.js"></script>
+    <script src="./scripts/login.js"></script>
   </body>
 </html>
