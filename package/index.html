@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./assets/styles/index.css" />
+    <link rel="stylesheet" href="../assets/styles/index.css" />
+    <link rel="stylesheet" href="./index.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="shortcut icon" href="./assets/images/logos/logo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/images/logos/logo.png" type="image/x-icon" />
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <title>SharpMC | Store</title>
+    <title>SharpMC</title>
   </head>
   <body>
     <div class="hide-on-mobile">
@@ -28,66 +29,65 @@
       <div class="site">
         <div class="sidebar">
           <div class="navbar">
-            <div class="nav-item">
+            <!-- <div class="nav-item">
               <div class="menu-icon" id="menu-icon">
                 <div id="menu-icon-perm" class="center">
                   <div></div>
                 </div>
               </div>
-            </div>
+            </div> -->
+
             <div class="nav-item">
               <div class="server-info">
                 <span id="players"></span>
                 <div id="ip-pill"></div>
               </div>
             </div>
+            <div class="nav-item"></div>
           </div>
           <!-- SHOW FEATURED PACKAGE -->
-          <div class="package-overlay">
-            <!-- FEATURED PACKAGE --JS -->
-            <div class="featured-package">
+          <!-- <div class="package-overlay"> -->
+          <!-- FEATURED PACKAGE --JS -->
+          <!-- <div class="featured-package">
               <span id="title">Featured<br />Package</span>
               <div class="package">
                 <span id="path"><span id="path-back"></span> <span id="path-current"></span></span>
-                <img src="./assets/images/logos/logo.png" id="package-logo" />
+                <img src="../assets/images/logos/logo.png" id="package-logo" />
                 <div class="package-info-bar">
                   <span id="package-price"></span>
                   <button id="view-button">View</button>
                 </div>
               </div>
-            </div>
-            <!-- FEATURED PACKAGE --JS -->
-          </div>
+            </div> -->
+          <!-- FEATURED PACKAGE --JS -->
+          <!-- </div> -->
           <!-- SHOW FEATURED PACKAGE -->
 
           <!-- SHOW NAVIGATION -->
           <div class="navigation-container">
             <div class="navigation">
               <ul id="navigation-list">
-                <span id="navigation-title">Categories</span>
-                <li><a href="/" class="active">Home</a></li>
+                <span id="navigation-title">Viewing Package</span>
+                <li>
+                  <a href="/" class="active"><span class="material-icons">chevron_left</span> Back to Home</a>
+                </li>
               </ul>
             </div>
           </div>
           <!-- SHOW NAVIGATION -->
 
-          <div class="footer"><a href="/privacy">Privacy Policy</a> &nbsp; <span id="dot">&bull;</span> &nbsp; <a href="/terms">Terms</a></div>
+          <div class="footer"><a href="/privacy">Privacy Policy</a> &nbsp; <span id="dot">&bull;</span> &nbsp; <a href="/terms">Terms</a> &nbsp; <span id="dot">&bull;</span> &nbsp; <a>We are not affilited with Mojang, AB</a></div>
         </div>
         <!-- LAYOUT -->
         <div class="container">
           <div class="column c1">
             <div class="sale-card card">
               <div class="sale-accent"><span id="sale-text">Sale</span></div>
-              <div class="sale-content">Take 50% off of EVERYTHING on our store during our new years sale!<br /><strong>Ends 2/1/23</strong></div>
+              <div class="sale-content">Take 50% off of EVERYTHING on our store during our new years sale!</div>
             </div>
             <div class="spacer"></div>
             <!-- LAYOUT -->
             <div class="content">
-              <span id="content-title" class="welcome-element">Welcome</span>
-              <span id="content-subtitle" class="welcome-element"
-                >Welcome to SharpMC! On our store you can find ranks, crate keys, and other things that can help you as you play on the server. If you are in need of support, or have any questions at all, feel free to join our
-                <a href="/discord">Discord</a></span
-              >
               <div class="content-container">
                 <span id="content-title" class="login-element">Log In</span>
                 <div class="spacer login-element"></div>
@@ -100,6 +100,18 @@
                     <button id="username-submit">Log In</button>
                   </div>
                 </div>
+
+                <div class="content-header">
+                  <div class="package-title">
+                    <span id="content-title" class="category-title"></span>
+                    <span id="content-subtitle"></span>
+                  </div>
+                  <div class="content-title-disclaimer"></div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="package-feature-list"></div>
               </div>
             </div>
             <!-- LAYOUT -->
@@ -123,6 +135,8 @@
               <div class="cart-icon"><span class="material-icons"> shopping_cart </span></div>
               <div class="cart-text">Your cart is empty, login to continue</div>
             </div>
+            <div class="add-to-cart card">Add King to Cart</div>
+
             <div class="community-goals"></div>
           </div>
         </div>
@@ -130,15 +144,13 @@
 
       <!-- JQUERY -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="./scripts/menu-animation.js"></script>
-      <script src="./scripts/modals.js"></script>
-      <script src="./scripts/copyIp.js"></script>
-      <script src="./scripts/serverInfo.js"></script>
-      <script src="./scripts/categories.js"></script>
-      <script src="./scripts/featuredPackage.js"></script>
-      <script src="./scripts/communityGoals.js"></script>
-      <script src="./scripts/login.js"></script>
-      <script src="./scripts/viewPackage.js"></script>
+      <script src="../scripts/modals.js"></script>
+      <script src="../scripts/copyIp.js"></script>
+      <script src="../scripts/serverInfo.js"></script>
+      <script src="../scripts/categories.js"></script>
+      <script src="../scripts/login.js"></script>
+      <script src="../scripts/viewPackage.js"></script>
+      <script src="../scripts/loadPackage.js"></script>
     </div>
   </body>
 </html>

@@ -3,14 +3,16 @@ let button = $('#modal-dismiss-button');
 
 modal_comps.forEach(comp => comp.hide());
 
-function showModal(title, subtitle) {
+async function showModal(title, subtitle, cb) {
   $('#modal-title').text(title);
   $('#modal-subtitle').text(subtitle);
   modal_comps.forEach(comp => comp.show());
+
+  button.on('click', async e => {
+    e.preventDefault();
+
+    modal_comps.forEach(comp => comp.hide());
+
+    if (cb) return await cb();
+  });
 }
-
-button.on('click', e => {
-  e.preventDefault();
-
-  modal_comps.forEach(comp => comp.hide());
-});
