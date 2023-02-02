@@ -4,6 +4,7 @@ body {
   padding: 0;
   margin: 0;
   /* background-color: var(--background-main); */
+  overflow: hidden;
 }
 
 #sale-price {
@@ -105,6 +106,7 @@ body {
   min-height: 100vh;
   max-width: 40%;
   width: 50%;
+  z-index: 10;
 }
 
 .navbar {
@@ -358,12 +360,12 @@ body {
   background-repeat: space;
   width: 100vw;
   height: 100vh;
-
   padding: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  backdrop-filter: blur(15px);
 }
 
 .card {
@@ -462,7 +464,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--brand-color);
+  background-color: var(--scrollbar-color);
   border-radius: var(--border-radius);
 }
 

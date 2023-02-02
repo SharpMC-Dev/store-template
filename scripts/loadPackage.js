@@ -1,107 +1,18 @@
+import tinycolor from 'https://esm.sh/tinycolor2';
+
 const packageEndpoint = `http://localhost:9901/store/packages?id=`;
 const contentTitle = $('.category-title');
 const contentSubtitle = $('#content-subtitle');
 const disclaimer = $('.content-title-disclaimer');
 const packageFeatureList = $('.package-feature-list');
+const addToCart = $('.add-to-cart');
+const content = $('.content');
+const loggedIn = window.localStorage.getItem('username') ? true : false;
 
 var requestOptions = {
   method: 'GET',
   redirect: 'follow',
 };
-
-let html = `<div class="package-feature-list">
-                  <div class="package-feature">
-                    <div class="package-feature-header">
-                      <span id="package-feature-title"> Chat Perks </span>
-                    </div>
-                    <div class="package-feature-items">
-                      <div class="package-feature-item">King Prefix <span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">Fancy Chat <span class="material-icons md-18">help_outline</span></div>
-                    </div>
-                  </div>
-                  <div class="package-feature">
-                    <div class="package-feature-header">
-                      <span id="package-feature-title"> King Kit </span>
-                      <div class="kit-disclaimer">1 Week Cooldown</div>
-                    </div>
-                    <div class="package-feature-kit">
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item">
-                        <span id="kit-item-title">Diamond Sword</span>
-                        <ul id="kit-item-details">
-                          <li>Sharpness 3</li>
-                          <li>Unbreaking 3</li>
-                        </ul>
-                      </div>
-                      <div class="package-feature-kit-item package-feature-kit-extra">
-                        <span id="kit-item-title">Golden Apples x16</span>
-                        <span id="kit-item-title">Cooked Beef x64</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="package-feature">
-                    <div class="package-feature-header">
-                      <span id="package-feature-title"> Commands </span>
-                    </div>
-                    <div class="package-feature-items">
-                      <div class="package-feature-item">/invsee <span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">/is fly <span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">/back <span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">/repair all <span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">/trash <span class="material-icons md-18">help_outline</span></div>
-                    </div>
-                  </div>
-                  <div class="package-feature">
-                    <div class="package-feature-header">
-                      <span id="package-feature-title"> Features </span>
-                    </div>
-                    <div class="package-feature-items">
-                      <div class="package-feature-item">4 Player Vaults<span class="material-icons md-18">help_outline</span></div>
-                      <div class="package-feature-item">25 Player Minions<span class="material-icons md-18">help_outline</span></div>
-                    </div>
-                  </div>
-                </div>`;
 
 function formatPrice(num) {
   return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
@@ -151,13 +62,13 @@ fetch(packageEndpoint + id, requestOptions)
   .then(res =>
     res.text().then(response => {
       response = JSON.parse(response);
-      const package = response;
+      const packageRes = response;
 
-      if (!package) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
+      if (!packageRes) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
 
-      document.title = document.title.split(/\|/gim).join(' ') + ` | ${package.parent.name} » ${package.name}`;
+      document.title = document.title.split(/\|/gim).join(' ') + ` | ${packageRes.parent.name} » ${packageRes.name}`;
 
-      let packageData = package.description?.json;
+      let packageData = packageRes.description?.json;
       if (!packageData) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
 
       let chatPerks = packageData.perks.chat;
@@ -168,8 +79,8 @@ fetch(packageEndpoint + id, requestOptions)
 
       let featureListFull = '';
 
-      contentTitle.text(package.name);
-      contentSubtitle.html(formatPrice(package.price));
+      contentTitle.text(packageRes.name);
+      contentSubtitle.html(`<span style="opacity: var(--text-fade-opacity); font-weight: 100;">${formatPrice(packageRes.price)}</span>`);
       disclaimer.text(packageData.permanent ? 'This package is permanent, you will not lose it to server resets.' : 'One time purchase. Items will not be restored on server reset.');
 
       featureListFull += `<div class="package-feature">
@@ -177,12 +88,21 @@ fetch(packageEndpoint + id, requestOptions)
                       <span id="package-feature-title"> Chat Perks </span>
                     </div>
                     <div class="package-feature-items">
-                      ${chatPerks.map(perk => `<div class="package-feature-item">${perk.text} <span class="material-icons md-18">help_outline</span></div>`).join('')}
+                      ${chatPerks
+                        .map(
+                          perk =>
+                            `<div class="package-feature-item">
+                    ${perk.text}
+                    <p style="font-size: 11pt; font-weight: 100; text-transform: none; opacity: var(--text-fade-opacity); font-style: italic;">(${perk['tooltip-text']})</p>
+                  </div>
+                </div>`
+                        )
+                        .join('')}
                     </div>
                   </div>`;
       featureListFull += `<div class="package-feature">
                     <div class="package-feature-header">
-                      <span id="package-feature-title"> ${package.name} Kit </span>
+                      <span id="package-feature-title"> /kit ${packageRes.name} </span>
                       <div class="kit-disclaimer">${kit.cooldown} Cooldown</div>
                     </div>
                     <div class="package-feature-kit">
@@ -197,7 +117,14 @@ fetch(packageEndpoint + id, requestOptions)
                       <span id="package-feature-title"> Commands </span>
                     </div>
                     <div class="package-feature-items">
-                      ${commandPerks.map(perk => `<div class="package-feature-item">${perk.text} <span class="material-icons md-18">help_outline</span></div>`).join('')}
+                      ${commandPerks
+                        .map(
+                          perk => `<div class="package-feature-item">
+                    ${perk.text}
+                    <p style="font-size: 11pt; font-weight: 100; text-transform: none; opacity: var(--text-fade-opacity); font-style: italic;">(${perk['tooltip-text']})</p>
+                </div>`
+                        )
+                        .join('')}
                     </div>
                   </div>`;
       featureListFull += `<div class="package-feature">
@@ -205,7 +132,15 @@ fetch(packageEndpoint + id, requestOptions)
                       <span id="package-feature-title"> Features </span>
                     </div>
                     <div class="package-feature-items">
-                      ${featurePerks.map(perk => `<div class="package-feature-item">${perk.text} <span class="material-icons md-18">help_outline</span></div>`).join('')}
+                      ${featurePerks
+                        .map(
+                          perk => `<div class="package-feature-item">
+                    ${perk.text}
+                    <p style="font-size: 11pt; font-weight: 100; text-transform: none; opacity: var(--text-fade-opacity); font-style: italic;">(${perk['tooltip-text']})</p>
+                  </div>
+                </div>`
+                        )
+                        .join('')}
                     </div>
                   </div>`;
       featureListFull += `<div class="package-feature">
@@ -213,11 +148,23 @@ fetch(packageEndpoint + id, requestOptions)
                       <span id="package-feature-title"> Extras </span>
                     </div>
                     <div class="package-feature-items">
-                      ${extraPerks.map(perk => `<div class="package-feature-item">${perk.text} <span class="material-icons md-18">help_outline</span></div>`).join('')}
+                      ${extraPerks
+                        .map(
+                          perk => `<div class="package-feature-item">
+                    ${perk.text}
+                    <p style="font-size: 11pt; font-weight: 100; text-transform: none; opacity: var(--text-fade-opacity); font-style: italic;">(${perk['tooltip-text']})</p>
+                  </div>
+                </div>`
+                        )
+                        .join('')}
                     </div>
                   </div>`;
 
       packageFeatureList.html(featureListFull);
+      addToCart.text(`Add ${packageRes.name} to cart`);
+      addToCart.css('background', packageData['accent-color']);
+      addToCart.attr('packageid', packageRes.id);
+      document.querySelector(':root').style.setProperty('--disclaimer', tinycolor(packageData['accent-color']).setAlpha(0.192));
     })
   )
   .catch(err => {
