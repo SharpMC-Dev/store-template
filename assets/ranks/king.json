@@ -1,0 +1,179 @@
+{
+  "name": "King",
+  "category": "Ranks",
+  "permanent": true,
+  "accent-color": "#FFAA00",
+  "kit": {
+    "cooldown": "1 Week",
+    "kit-items": [
+      {
+        "item-id": "diamond_sword",
+        "enchantments": [
+          {
+            "name": "Sharpness",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_pickaxe",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "3"
+          },
+          {
+            "name": "Fortune",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_axe",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_shovel",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_helmet",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_chestplate",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_leggings",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      },
+      {
+        "item-id": "diamond_boots",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "3"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "3"
+          }
+        ]
+      }
+    ],
+    "kit-extras": [
+      {
+        "item-id": "golden_apple",
+        "amount": "16"
+      },
+      {
+        "item-id": "cooked_beef",
+        "amount": "64"
+      }
+    ]
+  },
+  "perks": {
+    "chat": [
+      {
+        "text": "King Prefix",
+        "tooltip-text": "[KING] Username"
+      },
+      {
+        "text": "Fancy Chat",
+        "tooltip-text": "Use color and formatting codes in chat messages"
+      }
+    ],
+    "commands": [
+      {
+        "text": "/invsee",
+        "tooltip-text": "View other player's inventories"
+      },
+      {
+        "text": "/is fly",
+        "tooltip-text": "Fly on your own island"
+      },
+      {
+        "text": "/back",
+        "tooltip-text": "Go back to your previous position"
+      },
+      {
+        "text": "/repair all",
+        "tooltip-text": "Repair all repairable items in your inventory at once"
+      },
+      {
+        "text": "/trash",
+        "tooltip-text": "Opens your personal trash can for unwanted items and deletes them"
+      }
+    ],
+    "features": [
+      {
+        "text": "4 player vaults",
+        "tooltip-text": "Access to 4 player vaults (/pv)"
+      },
+      {
+        "text": "30 player minions",
+        "tooltip-text": "Raises your minion limit to 30 on one island"
+      }
+    ],
+    "extras": [
+      {
+        "text": "50,000 In-Game Currency",
+        "tooltip-text": "Receive 50,000 in-game currency upon purchase"
+      }
+    ]
+  }
+}
