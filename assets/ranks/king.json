@@ -3,6 +3,7 @@
   "category": "Ranks",
   "permanent": true,
   "accent-color": "#FFAA00",
+  "commands": ["lp user %u parent add king", "eco give %u 150000", "msg %u Thank you for purchasing King Rank! If you do not see your rewards soon, please create a support ticket with your reference ID."],
   "kit": {
     "cooldown": "1 Week",
     "kit-items": [
@@ -171,8 +172,8 @@
     ],
     "extras": [
       {
-        "text": "50,000 In-Game Currency",
-        "tooltip-text": "Receive 50,000 in-game currency upon purchase"
+        "text": "150,000 In-Game Currency",
+        "tooltip-text": "Receive 150,000 in-game currency upon purchase"
       }
     ]
   }

@@ -3,6 +3,7 @@
   "category": "Ranks",
   "permanent": true,
   "accent-color": "#2da82d",
+  "commands": ["lp user %u parent add vip", "eco give %u 50000", "msg %u Thank you for purchasing VIP Rank! If you do not see your rewards soon, please create a support ticket with your reference ID."],
   "kit": {
     "cooldown": "1 Week",
     "kit-items": [

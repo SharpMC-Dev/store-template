@@ -3,6 +3,7 @@
   "category": "Ranks",
   "permanent": true,
   "accent-color": "#1f51b5",
+  "commands": ["lp user %u parent add mvp", "eco give %u 100000", "msg %u Thank you for purchasing MVP Rank! If you do not see your rewards soon, please create a support ticket with your reference ID."],
   "kit": {
     "cooldown": "1 Week",
     "kit-items": [
