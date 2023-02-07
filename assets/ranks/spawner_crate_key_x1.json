@@ -1,0 +1,9 @@
+{
+  "name": "Spawner Crate Key x1",
+  "category": "Crate Keys",
+  "permanent": false,
+  "accent-color": "#485561",
+  "commands": ["lp user %u parent add vip", "eco give %u 50000", "msg %u Thank you for purchasing VIP Rank! If you do not see your rewards soon, please create a support ticket with your reference ID."],
+
+  "perks": {}
+}
