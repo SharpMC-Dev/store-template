@@ -163,7 +163,7 @@
         "tooltip-text": "Raises your minion limit to 15 on one island"
       }
     ],
-    "extras": [
+    "oneTime": [
       {
         "text": "50,000 In-Game Currency",
         "tooltip-text": "Receive 50,000 in-game currency upon purchase"
