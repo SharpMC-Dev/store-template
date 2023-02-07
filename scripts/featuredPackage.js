@@ -1,4 +1,5 @@
-const FPEndpoint = 'http://localhost:9901/store/packages/featured';
+const FPEndpoint = 'http://localhost:9901/store/products/featured';
+const priceEndpoint = 'http://localhost:9901/store/prices/';
 
 const pathBack = $('.featured-package #path #path-back');
 const pathCurrent = $('.featured-package #path #path-current');
@@ -17,38 +18,28 @@ function formatPrice(num) {
   return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 }
 
-function getPrice(p) {
-  let sale = p.sale;
-  if (sale != null && sale.active) {
-    return {
-      sale: true,
-      originalPrice: p.price,
-      salePrice: p.price - sale.discount,
-    };
-  }
+async function getPrice(p) {
+  let { price } = await (await fetch(priceEndpoint + p.price)).json();
 
-  return {
-    sale: false,
-    originalPrice: p.price,
-  };
+  return price;
 }
 
-fetch(FPEndpoint, requestOptions).then(res =>
-  res.text().then(response => {
+fetch(FPEndpoint, requestOptions).then(async res =>
+  res.text().then(async response => {
     response = JSON.parse(response);
 
-    if (response.successful === false) {
+    if (!response.successful && !response.id) {
       $('.featured-package').html(`<div id="path"><span id="path-back">No Featured Package</span></div>`);
 
       return;
     }
 
-    const price = getPrice(response);
+    const price = await getPrice(response);
 
-    pathBack.text(response.parent.name + ' / ');
+    pathBack.text(response.parentReadable + ' / ');
     pathCurrent.text(response.name);
     packageLogo.attr('src', response.imageUrl ? response.imageUrl : '');
-    packagePrice.text(price.sale ? `<span id="sale-price">${formatPrice(price.originalPrice)}</span> ${formatPrice(price.salePrice)}` : formatPrice(response.price));
-    packageButton.attr('onclick', `viewButton(${response.id})`);
+    packagePrice.text(`${formatPrice(price)}`);
+    packageButton.attr('onclick', `viewButton('${response.id}')`);
   })
 );

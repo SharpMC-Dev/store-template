@@ -1,6 +1,8 @@
 import tinycolor from 'https://esm.sh/tinycolor2';
 
-const packageEndpoint = `http://localhost:9901/store/packages?id=`;
+const packageEndpoint = `http://localhost:9901/store/products?id=`;
+const priceEndpoint = 'http://localhost:9901/store/prices/';
+
 const contentTitle = $('.category-title');
 const contentSubtitle = $('#content-subtitle');
 const disclaimer = $('.content-title-disclaimer');
@@ -16,6 +18,12 @@ var requestOptions = {
 
 function formatPrice(num) {
   return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+}
+
+async function getPrice(p) {
+  let { price } = await (await fetch(priceEndpoint + p.price)).json();
+
+  return price;
 }
 
 function romanize(num) {
@@ -60,30 +68,36 @@ if (!id) showModal('Something happened!', 'Please try again. If the issue persis
 
 fetch(packageEndpoint + id, requestOptions)
   .then(res =>
-    res.text().then(response => {
+    res.text().then(async response => {
       response = JSON.parse(response);
       const packageRes = response;
 
       if (!packageRes) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
 
+      console.log(packageRes);
+
       document.title = document.title.split(/\|/gim).join(' ') + ` | ${packageRes.parent.name} » ${packageRes.name}`;
 
-      let packageData = packageRes.description?.json;
+      let packageData = await (await fetch(packageRes.dataUrl)).json();
       if (!packageData) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
+      let price = await getPrice(packageRes);
 
       let chatPerks = packageData.perks.chat;
       let kit = packageData.kit;
       let commandPerks = packageData.perks.commands;
       let featurePerks = packageData.perks.features;
       let extraPerks = packageData.perks.extras;
+      let oneTimePerks = packageData.perks.oneTime;
 
       let featureListFull = '';
 
       contentTitle.text(packageRes.name);
-      contentSubtitle.html(`<span style="opacity: var(--text-fade-opacity); font-weight: 100;">${formatPrice(packageRes.price)}</span>`);
+      contentSubtitle.html(`<span style="opacity: var(--text-fade-opacity); font-weight: 100;">${formatPrice(price)}</span>`);
       disclaimer.text(packageData.permanent ? 'This package is permanent, you will not lose it to server resets.' : 'One time purchase. Items will not be restored on server reset.');
 
-      featureListFull += `<div class="package-feature">
+      if (chatPerks) {
+        featureListFull += `<div class="package-feature">
+        
                     <div class="package-feature-header">
                       <span id="package-feature-title"> Chat Perks </span>
                     </div>
@@ -100,7 +114,9 @@ fetch(packageEndpoint + id, requestOptions)
                         .join('')}
                     </div>
                   </div>`;
-      featureListFull += `<div class="package-feature">
+      }
+      if (kit) {
+        featureListFull += `<div class="package-feature">
                     <div class="package-feature-header">
                       <span id="package-feature-title"> /kit ${packageRes.name} </span>
                       <div class="kit-disclaimer">${kit.cooldown} Cooldown</div>
@@ -112,7 +128,9 @@ fetch(packageEndpoint + id, requestOptions)
                         ${formatKitExtras(kit)}
                       </div>
                   </div>`;
-      featureListFull += `<div class="package-feature">
+      }
+      if (commandPerks) {
+        featureListFull += `<div class="package-feature">
                     <div class="package-feature-header">
                       <span id="package-feature-title"> Commands </span>
                     </div>
@@ -127,7 +145,9 @@ fetch(packageEndpoint + id, requestOptions)
                         .join('')}
                     </div>
                   </div>`;
-      featureListFull += `<div class="package-feature">
+      }
+      if (featurePerks) {
+        featureListFull += `<div class="package-feature">
                     <div class="package-feature-header">
                       <span id="package-feature-title"> Features </span>
                     </div>
@@ -143,7 +163,9 @@ fetch(packageEndpoint + id, requestOptions)
                         .join('')}
                     </div>
                   </div>`;
-      featureListFull += `<div class="package-feature">
+      }
+      if (extraPerks) {
+        featureListFull += `<div class="package-feature">
                     <div class="package-feature-header">
                       <span id="package-feature-title"> Extras </span>
                     </div>
@@ -159,6 +181,27 @@ fetch(packageEndpoint + id, requestOptions)
                         .join('')}
                     </div>
                   </div>`;
+      }
+      if (oneTimePerks) {
+        featureListFull += `<div class="package-feature">
+        
+                    <div class="package-feature-header">
+                      <span id="package-feature-title"> Recieved Upon Purchase </span>
+                    </div>
+                    <div class="package-feature-items">
+                      ${oneTimePerks
+                        .map(
+                          perk =>
+                            `<div class="package-feature-item">
+                    ${perk.text}
+                    <p style="font-size: 11pt; font-weight: 100; text-transform: none; opacity: var(--text-fade-opacity); font-style: italic;">(${perk['tooltip-text']})</p>
+                  </div>
+                </div>`
+                        )
+                        .join('')}
+                    </div>
+                  </div>`;
+      }
 
       packageFeatureList.html(featureListFull);
       addToCart.text(`Add ${packageRes.name} to cart`);
