@@ -3,6 +3,7 @@
   "category": "Ranks",
   "permanent": true,
   "accent-color": "#FFAA00",
+  "permission-node": "group.king",
   "commands": ["lp user %u parent add king", "eco give %u 150000", "msg %u Thank you for purchasing King Rank! If you do not see your rewards soon, please create a support ticket with your reference ID."],
   "kit": {
     "cooldown": "1 Week",
