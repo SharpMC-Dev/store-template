@@ -1,4 +1,5 @@
 import tinycolor from 'https://esm.sh/tinycolor2';
+import { addToCart } from './cart.js';
 
 const packageEndpoint = `http://localhost:9901/store/products?id=`;
 const priceEndpoint = 'http://localhost:9901/store/prices/';
@@ -7,7 +8,7 @@ const contentTitle = $('.category-title');
 const contentSubtitle = $('#content-subtitle');
 const disclaimer = $('.content-title-disclaimer');
 const packageFeatureList = $('.package-feature-list');
-const addToCart = $('.add-to-cart');
+const addToCartButton = $('.add-to-cart');
 const content = $('.content');
 const loggedIn = window.localStorage.getItem('username') ? true : false;
 
@@ -71,12 +72,11 @@ fetch(packageEndpoint + id, requestOptions)
     res.text().then(async response => {
       response = JSON.parse(response);
       const packageRes = response;
+      console.log(packageRes);
 
       if (!packageRes) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
 
-      console.log(packageRes);
-
-      document.title = document.title.split(/\|/gim).join(' ') + ` | ${packageRes.parent.name} » ${packageRes.name}`;
+      document.title = document.title.split(/\|/gim).join(' ') + ` | ${packageRes.parentReadable} » ${packageRes.name}`;
 
       let packageData = await (await fetch(packageRes.dataUrl)).json();
       if (!packageData) showModal('Something happened!', 'Please try again. If the issue persists, please contact support.', () => (window.location = '/'));
@@ -204,9 +204,13 @@ fetch(packageEndpoint + id, requestOptions)
       }
 
       packageFeatureList.html(featureListFull);
-      addToCart.text(`Add ${packageRes.name} to cart`);
-      addToCart.css('background', packageData['accent-color']);
-      addToCart.attr('packageid', packageRes.id);
+      addToCartButton.text(`Add ${packageRes.name} to cart`);
+      addToCartButton.on('click', () => {
+        let packageId = packageRes.id;
+        addToCart(packageId, packageRes.parentAllowsMultiplePackages, packageRes.parent);
+      });
+      addToCartButton.css('background', packageData['accent-color']);
+      addToCartButton.attr('packageid', packageRes.id);
       document.querySelector(':root').style.setProperty('--disclaimer', tinycolor(packageData['accent-color']).setAlpha(0.192));
     })
   )

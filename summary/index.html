@@ -67,7 +67,7 @@
           <div class="navigation-container">
             <div class="navigation">
               <ul id="navigation-list">
-                <span id="navigation-title">Viewing Package</span>
+                <span id="navigation-title">Cart Summary</span>
                 <li>
                   <a href="/" class="active"><span class="material-icons">chevron_left</span> Back to Home</a>
                 </li>
@@ -102,16 +102,29 @@
                 </div>
 
                 <div class="content-header">
-                  <div class="package-title">
-                    <span id="content-title" class="category-title"></span>
-                    <span id="content-subtitle"></span>
+                  <div class="cart-title main-cart">
+                    <span id="content-title">Your Cart</span>
+                    <span id="content-subtitle"><span class="cart-quantity-total"></span></span>
+                    <span class="content-subtitle-coupon-disclaimer">Coupons can be applied during checkout on the next page</span>
                   </div>
                   <div class="content-title-disclaimer"></div>
                 </div>
 
-                <div class="spacer"></div>
-
-                <div class="package-feature-list"></div>
+                <div class="cart-empty">
+                  <div class="cart-empty-header">Your Cart is Empty</div>
+                  <div class="cart-empty-prompt">
+                    <a href="/" class="active"><span class="material-icons">chevron_left</span> Back to Home</a>
+                  </div>
+                </div>
+                <div class="cart-breakdown main-cart">
+                  <div class="cart-items"></div>
+                  <div class="spacer"></div>
+                  <div class="cart-total">Total: <span class="cart-total-text"></span></div>
+                  <div class="cart-checkout-prompt">
+                    <button class="checkout-button" onclick="generateCheckoutLink()">Proceed to Checkout</button>
+                    <span class="checkout-button-disclaimer">You will be redirected to our secure payment gateway.</span>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- LAYOUT -->
@@ -131,11 +144,10 @@
               </div> -->
               </div>
             </div>
-            <div class="cart-card card">
+            <!-- <div class="cart-card card">
               <div class="cart-icon"><span class="material-icons"> shopping_cart </span></div>
               <div class="cart-text">Your cart is empty, login to continue</div>
-            </div>
-            <div class="add-to-cart card"></div>
+            </div> -->
 
             <div class="community-goals"></div>
           </div>
@@ -147,11 +159,69 @@
       <script src="../scripts/modals.js"></script>
       <script src="../scripts/copyIp.js"></script>
       <script src="../scripts/serverInfo.js"></script>
-      <script src="../scripts/categories.js"></script>
       <script src="../scripts/login.js" type="module"></script>
-      <script src="../scripts/viewPackage.js"></script>
-      <script src="../scripts/loadPackage.js" type="module"></script>
       <script src="../scripts/cart.js" type="module"></script>
+      <script src="../scripts/loadCart.js" type="module"></script>
+
+      <script defer>
+        let cart = window.localStorage.getItem('cartPackages') ? window.localStorage.getItem('cartPackages').split(/\,/gim) : [];
+
+        function getCartItems() {
+          let cartList = cart.map(x => x.split(/\|/gim)[0]);
+          let cartCategories = cart.map(x => x.split(/\|/gim)[1]);
+          console.log(cartCategories);
+
+          let map = cartList.map(i => ({ category: cartCategories[cartList.indexOf(i)], id: i, quantity: cartList.filter(x => x == i).length }));
+          let final = [...new Map(map.map(m => [m.id, m])).values()];
+
+          return final;
+        }
+
+        function removeFromCart(product) {
+          let newCart = [];
+          let cartItems = getCartItems();
+
+          let omitProduct = cartItems.filter(x => x.id !== product);
+
+          cart = omitProduct;
+          if (!cart || cart.length <= 0) {
+            window.localStorage.setItem('cartPackages', []);
+            window.localStorage.setItem('cartSize', 0);
+
+            location.reload();
+
+            return;
+          }
+
+          if (cart.length == 1) {
+            addBackToCart(cart[0].id, cart[0].category, cart[0].quantity);
+
+            location.reload();
+            return;
+          }
+
+          cart.forEach(i => {
+            console.log('THE LETTER I', i);
+            if (!i.id && !i.category) return;
+            addBackToCart(i.id, i.category, i.quantity);
+          });
+
+          location.reload();
+        }
+
+        function addBackToCart(productId, category, quantity) {
+          let nCart = [];
+          console.log('ID', productId);
+          console.log('CATEGORY', category);
+          for (let i = 0; i < quantity; i++) {
+            nCart.push(`${productId + '|' + category}`);
+          }
+          console.log('NC', nCart);
+          window.localStorage.setItem('cartPackages', nCart);
+
+          console.log(cart);
+        }
+      </script>
     </div>
   </body>
 </html>

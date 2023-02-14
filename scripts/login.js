@@ -1,3 +1,5 @@
+import { getCartSize } from './cart.js';
+
 const localStorage = window.localStorage;
 
 const loginElements = $('.login-element');
@@ -21,12 +23,9 @@ if (localStorage.getItem('username')) {
   accountName.css({ color: 'white', textDecoration: 'none', fontSize: '16pt', cursor: 'default' });
   logoutButton.show();
 
-  let cartSize = localStorage.getItem('cartSize') ? localStorage.getItem('cartSize') : 0;
-  let cartPackages = localStorage.getItem('cartPackages') ? localStorage.getItem('cartPackages') : [];
-  localStorage.setItem('cartSize', cartSize);
-  localStorage.setItem('cartPackages', cartPackages);
+  let cartSize = getCartSize();
 
-  cartText.text(`${cartSize} items in your cart`);
+  cartText.text(`${cartSize}`);
   welcomeText.text(`Welcome, ${localStorage.getItem('username')}`);
 }
 
@@ -55,7 +54,15 @@ usernameButton.on('click', e => {
 });
 
 logoutButton.on('click', e => {
-  localStorage.removeItem('username');
-  localStorage.removeItem('cart');
-  location.reload();
+  showModal(
+    'Logout?',
+    'If you log out, your cart will be lost.\nTo cancel, just reload the page.',
+    () => {
+      localStorage.removeItem('username');
+      localStorage.removeItem('cartPackages');
+      localStorage.removeItem('cartSize');
+      location.reload();
+    },
+    'Log Out'
+  );
 });

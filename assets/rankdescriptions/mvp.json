@@ -1,0 +1,171 @@
+{
+  "name": "MVP",
+  "category": "Ranks",
+  "permanent": true,
+  "accent-color": "#1f51b5",
+  "kit": {
+    "cooldown": "1 Week",
+    "kit-items": [
+      {
+        "item-id": "iron_sword",
+        "enchantments": [
+          {
+            "name": "Sharpness",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_pickaxe",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "2"
+          },
+          {
+            "name": "Fortune",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_axe",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_shovel",
+        "enchantments": [
+          {
+            "name": "Efficiency",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_helmet",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_chestplate",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_leggings",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      },
+      {
+        "item-id": "iron_boots",
+        "enchantments": [
+          {
+            "name": "Protection",
+            "level": "2"
+          },
+          {
+            "name": "Unbreaking",
+            "level": "2"
+          }
+        ]
+      }
+    ],
+    "kit-extras": [
+      {
+        "item-id": "cooked_beef",
+        "amount": "64"
+      }
+    ]
+  },
+  "perks": {
+    "chat": [
+      {
+        "text": "MVP Prefix",
+        "tooltip-text": "[MVP] Username"
+      }
+    ],
+    "commands": [
+      {
+        "text": "/ec",
+        "tooltip-text": "Access your Ender Chest from anywhere"
+      },
+      {
+        "text": "/feed",
+        "tooltip-text": "Fill your hunger back to 100%"
+      },
+      {
+        "text": "/repair",
+        "tooltip-text": "Fully repair the item in your hand"
+      },
+      {
+        "text": "/anvil",
+        "tooltip-text": "Open a personal anvil from anywhere"
+      },
+      {
+        "text": "/afk",
+        "tooltip-text": "Show that you're away"
+      }
+    ],
+    "features": [
+      {
+        "text": "3 player vaults",
+        "tooltip-text": "Access to 3 player vaults (/pv)"
+      },
+      {
+        "text": "20 player minions",
+        "tooltip-text": "Raises your minion limit to 20 on one island"
+      }
+    ],
+    "extras": [
+      {
+        "text": "100,000 In-Game Currency",
+        "tooltip-text": "Receive 100,000 in-game currency upon purchase"
+      }
+    ]
+  }
+}
