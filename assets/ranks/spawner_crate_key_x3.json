@@ -1,0 +1,16 @@
+{
+  "name": "Spawner Crate Key x3",
+  "category": "Crate Keys",
+  "permanent": false,
+  "accent-color": "#485561",
+  "commands": ["crates key give %u spawner_key 3", "msg %u Thank you for purchasing Spawner Crate Key x3! If you do not see your rewards soon, please create a support ticket with your reference ID."],
+
+  "perks": {
+    "oneTime": [
+      {
+        "text": "3x Spawner Crate Key",
+        "tooltip-text": "View possible rewards at /warp crates"
+      }
+    ]
+  }
+}
